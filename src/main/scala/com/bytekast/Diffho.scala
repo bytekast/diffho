@@ -10,15 +10,12 @@ import org.fusesource.jansi.Ansi._
 
 import scala.collection.mutable
 
-class Diffho {}
-
 object Diffho {
   def main(args: Array[String]) {
 
     val configs = args.map(new File(_))
 
     AnsiConsole.systemInstall()
-
     def colorize = (color: String, text: String) => ansi().render(s"@|$color $text|@")
 
     if (configs.size != 2) {
@@ -108,3 +105,4 @@ object Diffho {
   }
 }
 
+class Diffho {}
