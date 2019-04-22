@@ -29,4 +29,4 @@ Usage:
 /build/graal/diffho <configFile1> <configFile2>
 ```
 
-You can also download the pre-compiled Linux executable here: [diffho](build/graal/diffho)
+You can also download the pre-compiled Linux executable here: [diffho](https://github.com/bytekast/diffho/raw/master/build/graal/diffho)
