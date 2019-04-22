@@ -6,37 +6,33 @@ import scala.collection.JavaConverters._
 import com.typesafe.config.ConfigValue
 import com.typesafe.config.ConfigFactory
 import org.fusesource.jansi.AnsiConsole
-import picocli.CommandLine
 import org.fusesource.jansi.Ansi._
 
 import scala.collection.mutable
 
+class Diffho {}
 
-@CommandLine.Command(name = "Diffho", version = Array("0.0.1"),
-  mixinStandardHelpOptions = true, // add --help and --version options
-  description = Array("Diff Utility for HOCON files"))
-class Diffho extends Runnable {
+object Diffho {
+  def main(args: Array[String]) {
 
-  @picocli.CommandLine.Parameters(arity = "1", paramLabel = "CONFIG FILES", description = Array("The configs to compare"))
-  private val configs: Array[File] = null
+    val configs = args.map(new File(_))
 
-  override def run(): Unit = {
     AnsiConsole.systemInstall()
 
     def colorize = (color: String, text: String) => ansi().render(s"@|$color $text|@")
 
     if (configs.size != 2) {
-      System.err.println(colorize("red", "ERROR: You must provide exactly 2 config files"))
+      System.err.println(colorize("red", s"ERROR: You must provide exactly 2 config files"))
       System.exit(1)
     }
 
     if (!configs.head.exists()) {
-      System.err.println(colorize("red", "ERROR: ${configs.first()} does not exist"))
+      System.err.println(colorize("red", s"ERROR: ${configs.head} does not exist"))
       System.exit(1)
     }
 
     if (!configs.last.exists()) {
-      System.err.println(colorize("red", "ERROR: ${configs.last()} does not exist"))
+      System.err.println(colorize("red", s"ERROR: ${configs.last} does not exist"))
       System.exit(1)
     }
 
@@ -112,8 +108,3 @@ class Diffho extends Runnable {
   }
 }
 
-object Diffho {
-  def main(args: Array[String]) {
-    CommandLine.run(new Diffho(), args: _*)
-  }
-}

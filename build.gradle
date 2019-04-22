@@ -17,14 +17,10 @@ configurations {
 
 dependencies {
   compile(
-
     'org.scala-lang:scala-library:2.12.6',
-    'info.picocli:picocli:3.9.6',
     'com.typesafe:config:1.3.3',
     'org.fusesource.jansi:jansi:1.18'
   )
-
-  generateConfig 'info.picocli:picocli-codegen:3.9.6'
 }
 
 application {
@@ -42,11 +38,9 @@ graal {
   mainClass 'com.bytekast.Diffho'
   outputName 'diffho'
   graalVersion '1.0.0-rc15'
-  option '-H:ReflectionConfigurationFiles=build/cli-reflect.json'
   option '-H:+ReportUnsupportedElementsAtRuntime'
   option '-H:+ReportExceptionStackTraces'
   option '--no-fallback'
 }
 
-assemble.dependsOn generateGraalReflectionConfig
 build.dependsOn shadowJar
