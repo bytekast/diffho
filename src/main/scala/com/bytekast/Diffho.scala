@@ -1,7 +1,6 @@
 package com.bytekast
 
 import java.io.File
-import java.util.Map
 
 import scala.collection.JavaConverters._
 import com.typesafe.config.ConfigValue
@@ -22,7 +21,7 @@ class Diffho extends Runnable {
   private val configs: Array[File] = null
 
   override def run(): Unit = {
-    //AnsiConsole.systemInstall()
+    AnsiConsole.systemInstall()
 
     def colorize = (color: String, text: String) => ansi().render(s"@|$color $text|@")
 
@@ -83,7 +82,8 @@ class Diffho extends Runnable {
       if (both.nonEmpty) {
         clearScreen
         println(colorize("red", "\n------------- MERGE CONFLICTS -------------\n"))
-        for ((it, idx) <- both.zipWithIndex) {
+        var idx = 0
+        both.foreach { it =>
           println(s"key: ${colorize("red", it._1)}")
           println(s"left: ${colorize("green", findLeft(it._2).render())}")
           println(s"right: ${colorize("blue", findRight(it._2).render())}")
@@ -94,6 +94,7 @@ class Diffho extends Runnable {
             clearScreen
             println(colorize("red", "\n------------- MERGE CONFLICTS -------------\n"))
           }
+          idx += 1
         }
       }
 

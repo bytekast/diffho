@@ -21,11 +21,10 @@ dependencies {
     'org.scala-lang:scala-library:2.12.6',
     'info.picocli:picocli:3.9.6',
     'com.typesafe:config:1.3.3',
-    'info.picocli:picocli:4.0.0-alpha-2',
     'org.fusesource.jansi:jansi:1.18'
   )
 
-  generateConfig 'info.picocli:picocli-codegen:4.0.0-alpha-2'
+  generateConfig 'info.picocli:picocli-codegen:3.9.6'
 }
 
 application {
